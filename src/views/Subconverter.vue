@@ -549,9 +549,10 @@ export default {
 
       this.$notify({
         title: "隐私提示",
-        type: "danger",
-        message:(
-          { style: "color: red" },
+        type: "default",
+        message: h(
+          "i",
+	  { style: "color: red" },
           "各种订阅链接（短链接服务除外）生成纯前端实现，无隐私问题。默认提供后端转换服务，隐私担忧者请自行搭建后端服务。"
         )
       });
