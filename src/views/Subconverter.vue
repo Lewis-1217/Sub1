@@ -549,7 +549,7 @@ export default {
 
       this.$notify({
         title: "隐私提示",
-        type: "default",
+        type: "primary",
         message: h(
           "i",
 	  { style: "color: red" },
