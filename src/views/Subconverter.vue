@@ -31,10 +31,16 @@
               </el-form-item>
 	
 	<el-form-item label="后端地址:">
-                  <el-select v-model="form.clientType" style="width: 100%">
-                  <el-option v-for="(v, k) in options.clientTypes2" :key="k" :label="k" :value="v"></el-option>
-                </el-select>
-                </el-form-item>
+                  <el-autocomplete
+                    style="width: 100%"
+                    v-model="form.customBackend"
+                    :fetch-suggestions="backendSearch"
+                    placeholder="❌🚫🈲🔞默认后端地址对需要代理才可访问的网站很不友好，例如GitHub反代，点我选择后端地址"
+                  >
+	
+                    <el-button slot="append" @click="gotoGayhub" icon="el-icon-link">前往项目仓库</el-button>
+                  </el-autocomplete>
+</el-form-item>
               <div v-if="advanced === '2'">
                 
                 <el-form-item label="远程配置:">
@@ -250,13 +256,16 @@ export default {
           ssd: "ssd",
           ClashR: "clashr",
           Surge2: "surge&ver=2",
+	https://sub.xeton.dev/sub?:"https://sub.xeton.dev/sub?",
+	https://sub.bpjzx2.workers.dev/sub?:"https://sub.bpjzx2.workers.dev/sub?",
+	https://api.dler.io/sub?:"https://api.dler.io/sub?",
+	https://sub.789.st/sub?:"https://sub.789.st/sub?",
         },
-       clientTypes2:  {
-			https://sub.xeton.dev/sub?:"https://sub.xeton.dev/sub?",
-			https://sub.bpjzx2.workers.dev/sub?:"https://sub.bpjzx2.workers.dev/sub?",
-			https://api.dler.io/sub?:"https://api.dler.io/sub?",
-			https://sub.789.st/sub?:"https://sub.789.st/sub?",
-	}
+        backendOptions: [{ value: "https://sub.xeton.dev/sub?" },
+			{ value: "https://api.dler.io/sub?" },
+			{ value: "https://sub.789.st/sub?" },
+			{ value: "https://sub.bpjzx2.workers.dev/sub?" },
+        ],
         remoteConfig: [
           {
             label: "universal",
