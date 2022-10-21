@@ -35,7 +35,7 @@
                     style="width: 100%"
                     v-model="form.customBackend"
                     :fetch-suggestions="backendSearch"
-                    placeholder="❌🚫🈲🔞默认后端地址对需要代理才可访问的网站很不友好，例如GitHub反代!!!"
+                    placeholder="❌🚫🈲🔞默认后端地址对需要代理才可访问的网站很不友好，例如GitHub反代，点我选择后端地址"
                   >
 	
                     <el-button slot="append" @click="gotoGayhub" icon="el-icon-link">前往项目仓库</el-button>
@@ -257,11 +257,10 @@ export default {
           ClashR: "clashr",
           Surge2: "surge&ver=2",
         },
-       backendOptions: [{ value: "http://127.0.0.1:25500/sub?" },
-			{ value: "https://sub.bpjzx2.workers.dev/sub?" },
-			{ value: "https://sub.xeton.dev/sub?" },
+       backendOptions: [{ value: "https://sub.xeton.dev/sub?" },
 			{ value: "https://api.dler.io/sub?" },
 			{ value: "https://sub.789.st/sub?" },
+			{ value: "https://sub.bpjzx2.workers.dev/sub?" },
         ],
         remoteConfig: [
           {
@@ -549,8 +548,12 @@ export default {
 
      this.$notify({
         title: "隐私提示",
-        message:"各种订阅链接（短链接服务除外）生成纯前端实现，无隐私问题。默认提供后端转换服务，隐私担忧者请自行搭建后端服务。",
-	duration:0
+        type: "danger",
+        message: h(
+          "i",
+          { style: "color: red" },
+          "❌🚫🈲🔞默认后端地址对需要代理才可访问的网站很不友好，例如GitHub反代，请自行选择后端地址!"
+        )
       });
     },
     confirmUploadConfig() {
