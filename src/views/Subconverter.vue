@@ -31,15 +31,9 @@
               </el-form-item>
 	
 	<el-form-item label="后端地址:">
-                  <el-autocomplete
-                    style="width: 100%"
-                    v-model="form.customBackend"
-                    :fetch-suggestions="backendSearch"
-                    placeholder="❌🚫🈲🔞默认后端地址对需要代理才可访问的网站很不友好，例如GitHub反代，点我选择后端地址"
-                  >
-	
-                    <el-button slot="append" @click="gotoGayhub" icon="el-icon-link">前往项目仓库</el-button>
-                  </el-autocomplete>
+                  <el-select v-model="form.clientType" style="width: 100%">
+                  <el-option v-for="(v, k) in options.clientTypes2" :key="k" :label="k" :value="v"></el-option>
+                </el-select>
                 </el-form-item>
               <div v-if="advanced === '2'">
                 
@@ -257,11 +251,12 @@ export default {
           ClashR: "clashr",
           Surge2: "surge&ver=2",
         },
-       backendOptions: [{ value: "https://sub.xeton.dev/sub?" },
-			{ value: "https://api.dler.io/sub?" },
-			{ value: "https://sub.789.st/sub?" },
-			{ value: "https://sub.bpjzx2.workers.dev/sub?" },
-        ],
+       clientTypes2:  {
+			https://sub.xeton.dev/sub?:"https://sub.xeton.dev/sub?",
+			https://sub.bpjzx2.workers.dev/sub?:"https://sub.bpjzx2.workers.dev/sub?",
+			https://api.dler.io/sub?:"https://api.dler.io/sub?",
+			https://sub.789.st/sub?:"https://sub.789.st/sub?",
+	}
         remoteConfig: [
           {
             label: "universal",
@@ -546,13 +541,13 @@ export default {
     notify() {
       const h = this.$createElement;
 
-     this.$notify({
+      this.$notify({
         title: "隐私提示",
         type: "danger",
         message: h(
           "i",
           { style: "color: red" },
-          "❌🚫🈲🔞默认后端地址对需要代理才可访问的网站很不友好，例如GitHub反代，请自行选择后端地址!"
+          "各种订阅链接（短链接服务除外）生成纯前端实现，无隐私问题。默认提供后端转换服务，隐私担忧者请自行搭建后端服务。"
         )
       });
     },
